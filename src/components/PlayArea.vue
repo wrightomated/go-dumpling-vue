@@ -1,0 +1,43 @@
+<template>
+  <div class="container">
+    <div v-for="(player, index) in playArea" :key="index" class="row">
+      <Card
+        v-for="card in player"
+        :key="card.id"
+        :cardType="card.type"
+        :cardId="card.id"
+      />
+    </div>
+  </div>
+</template>
+
+<script lang="ts">
+import { Options, Vue } from "vue-class-component";
+import Card from "./Card.vue";
+import socket from "../services/socket.service";
+
+@Options({
+  components: {
+    Card,
+  },
+})
+export default class PlayArea extends Vue {
+  playArea: any = [];
+  mounted() {
+    socket.onUpdatePlayArea((x: any) => {
+      this.playArea = x;
+      console.log(this.playArea);
+    });
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped lang="scss">
+.container {
+  //   background: blue;
+  &:first-child {
+    background: burlywood !important;
+  }
+}
+</style>
