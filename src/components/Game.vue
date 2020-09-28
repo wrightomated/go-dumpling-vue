@@ -1,54 +1,67 @@
 <template>
   <div class="grid-container">
-    <div class="player-area">
+    <div class="player-hand">
       <PlayerCards />
     </div>
-    <div class="console">
-      <HelloWorld />
+    <div class="game-details">
+      <GameDetails />
     </div>
-    <div class="what">
+    <div class="play-area">
       <PlayArea />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
-import HelloWorld from "./HelloWorld.vue";
+import { defineComponent } from "vue";
+import GameDetails from "./GameDetails.vue";
 import PlayerCards from "./PlayerCards.vue";
 import PlayArea from "./PlayArea.vue";
 
-@Options({
+export default defineComponent({
+  name: "Game",
   components: {
-    HelloWorld,
+    GameDetails,
     PlayerCards,
     PlayArea,
   },
-})
-export default class Game extends Vue {}
+});
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .grid-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  gap: 1px 1px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  // grid-template-rows: repeat(3, 1fr);
+  gap: 8px 8px;
   grid-template-areas:
-    "player-area player-area player-area player-area console"
-    ". . . . ."
-    ". . . . .";
+    "player-hand player-hand player-hand player-hand player-hand game-details"
+    "play-area play-area play-area play-area play-area play-area"
+    "play-area play-area play-area play-area play-area play-area";
 }
-.player-area {
+.player-hand {
   display: grid;
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: 1fr;
-  gap: 1px 4px;
+  gap: 1px 8px;
   grid-template-areas: ". . . . . . . . . .";
-  grid-area: player-area;
+  grid-area: player-hand;
 }
-.console {
-  grid-area: console;
+.game-details {
+  grid-area: game-details;
+}
+.play-area {
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 1px 8px;
+  grid-template-areas:
+    ". . . . . . . . . . . . ."
+    ". . . . . . . . . . . . ."
+    ". . . . . . . . . . . . ."
+    ". . . . . . . . . . . . ."
+    ". . . . . . . . . . . . .";
+  grid-area: play-area;
 }
 </style>

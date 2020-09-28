@@ -35,7 +35,7 @@ class SocketService {
     this.socket.emit("ready");
   }
 
-  public selectCard(cardId: number) {
+  public selectCard(cardId: number | undefined) {
     this.socket.emit("cardSelected", cardId);
   }
 }

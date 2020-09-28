@@ -3,15 +3,15 @@
 </template>
 
 <script lang="ts">
-import { Options, Vue } from "vue-class-component";
+import { defineComponent } from "vue";
 import Game from "./components/Game.vue";
 
-@Options({
+export default defineComponent({
+  name: "App",
   components: {
     Game,
   },
-})
-export default class App extends Vue {}
+});
 </script>
 
 <style lang="scss">
@@ -20,7 +20,5 @@ export default class App extends Vue {}
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
