@@ -1,5 +1,6 @@
 <template>
   <Card
+    class="card"
     v-for="card in hand"
     :key="card.id"
     :cardType="card.type"
@@ -38,7 +39,7 @@ export default defineComponent({
     Card: Card,
   },
   data() {
-    return { hand: [{ id: 1, type: "cake" }] };
+    return { hand: [] };
   },
   mounted() {
     socket.onUpdatedHand((x: any) => (this.hand = x));
@@ -47,4 +48,9 @@ export default defineComponent({
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.card {
+  width: 100px;
+  margin: 4px;
+}
+</style>

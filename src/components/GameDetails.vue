@@ -1,11 +1,17 @@
 <template>
   <div class="console">
-    <button v-if="!ready" v-on:click="connect()">Ready</button>
+    <div v-if="!ready">
+      <input type="text" v-model="playerName" placeholder="Player Name" />
+      <button v-on:click="connect(playerName)">Ready</button>
+    </div>
+
     <div v-if="ready && timeleft !== 0">
       <p>
         Players ready: <span class="players-ready">{{ playersReady }}</span>
       </p>
-      <p>Countdown: {{ timeleft }}s</p>
+      <p class="time-left">
+        {{ timeleft }}
+      </p>
     </div>
   </div>
 </template>
@@ -39,16 +45,16 @@ import socket from "../services/socket.service";
 export default defineComponent({
   name: "GameDetails",
   data() {
-    return { playersReady: "", ready: false, timeleft: "?" };
+    return { playersReady: "", ready: false, timeleft: "" };
   },
   mounted() {
     socket.onPlayerNumberUpdate((x: string) => (this.playersReady = x));
     socket.onCountdown((x: string) => (this.timeleft = x));
   },
   methods: {
-    connect() {
+    connect(playerName: string) {
       this.ready = true;
-      socket.clientReady();
+      socket.clientReady(playerName);
     },
   },
 });
@@ -107,7 +113,28 @@ button {
   }
 }
 .players-ready {
-  color: $fifth;
+  // color: $fifth;``
   font-size: 1em;
+}
+.time-left {
+  font-size: 2em;
+  color: $fifth;
+}
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>

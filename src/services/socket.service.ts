@@ -31,8 +31,12 @@ class SocketService {
     return this.socket.on("playArea", callback);
   }
 
-  public clientReady(): void {
-    this.socket.emit("ready");
+  public onUpdatedTable(callback: any) {
+    return this.socket.on("table", callback);
+  }
+
+  public clientReady(playerName?: string): void {
+    this.socket.emit("ready", playerName);
   }
 
   public selectCard(cardId: number | undefined) {
