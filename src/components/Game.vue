@@ -1,13 +1,13 @@
 <template>
+  <div class="game-details">
+    <GameDetails />
+  </div>
   <div class="game-container">
     <div class="player-hand">
       <PlayerCards />
     </div>
-    <div class="game-details">
-      <GameDetails />
-    </div>
     <div class="play-area">
-      <PlayArea />
+      <Table />
     </div>
   </div>
 </template>
@@ -16,14 +16,14 @@
 import { defineComponent } from "vue";
 import GameDetails from "./GameDetails.vue";
 import PlayerCards from "./PlayerCards.vue";
-import PlayArea from "./PlayArea.vue";
+import Table from "./Table.vue";
 
 export default defineComponent({
   name: "Game",
   components: {
     GameDetails,
     PlayerCards,
-    PlayArea,
+    Table,
   },
 });
 </script>
@@ -33,11 +33,6 @@ export default defineComponent({
 .game-container {
   position: relative;
   width: 100%;
-}
-.game-details {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 .player-hand {
   display: flex;

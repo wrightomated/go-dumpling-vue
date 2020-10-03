@@ -11,24 +11,6 @@
 </template>
 
 <script lang="ts">
-// import { Options, Vue } from "vue-class-component";
-// import Card from "./Card.vue";
-// import socket from "../services/socket.service";
-
-// @Options({
-//   components: {
-//     Card,
-//   },
-// })
-// export default class PlayerCards extends Vue {
-//   hand = [
-//     { id: 1, type: "cake" },
-//     { id: 2, type: "Choc" },
-//   ];
-//   mounted() {
-//     socket.onUpdatedHand((x: any) => (this.hand = x));
-//   }
-// }
 import { defineComponent } from "vue";
 import Card from "./Card.vue";
 import socket from "../services/socket.service";
@@ -42,7 +24,10 @@ export default defineComponent({
     return { hand: [] };
   },
   mounted() {
-    socket.onUpdatedHand((x: any) => (this.hand = x));
+    socket.onUpdatedHand((x: any) => {
+      console.log("udating hand: ", x);
+      this.hand = x;
+    });
   },
 });
 </script>
