@@ -3,7 +3,9 @@ export type CardType =
   | "birthday"
   | "beef"
   | "pork"
-  | "greens"
   | "puddin"
-  | "beam"
-  | "prawn";
+  | "prawn"
+  | "ice"
+  | "bowl"
+  | "chilli"
+  | "vinegar";

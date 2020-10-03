@@ -1,35 +1,22 @@
 <template>
-  <div class="table">
-    <div class="table__round">Round: {{ table.round }}/3</div>
-    <PlayerRow
-      v-for="(player, index) in table.players"
-      :key="index"
-      :player="player"
-    />
+  <div v-for="(p, i) in end" :key="i">
+    <div>{{ p.name }}: {{ p.score }}points</div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import PlayerRow from "./PlayerRow.vue";
 import socket from "../services/socket.service";
-import { TableModel } from "../models/tableModel";
 
 export default defineComponent({
-  name: "Table",
-  components: {
-    PlayerRow: PlayerRow,
-  },
-  props: {
-    player: Object,
-  },
+  name: "End",
   data() {
-    return { table: {} };
+    return { end: [{ name: "none", score: 1 }] };
   },
   mounted() {
-    socket.onUpdatedTable((table: TableModel) => {
-      console.log(table);
-      this.table = table;
+    socket.onEnd((players: any[]) => {
+      this.end = players;
+      console.log(players);
     });
   },
 });

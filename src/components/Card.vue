@@ -4,12 +4,13 @@
     v-bind:class="[
       {
         'card--player-card': isPlayerCard,
+        'card--table-card': !isPlayerCard,
         'card--is-selected': isSelected,
       },
       cardType,
     ]"
   >
-    <img src="../assets/dumpling-no-bg.png" alt="Avatar" style="width:100%" />
+    <img :src="getImage()" :alt="cardType" />
     <div class="container">
       <span class="card__name">{{ cardType }}</span>
       <Tooltip class="card__tooltip" :cardType="cardType" />
@@ -39,6 +40,15 @@ export default defineComponent({
         socket.selectCard(this.cardId);
       }
     },
+    getImage() {
+      if (this.cardType === "chilli") {
+        // return "../assets/hotsauce.png";
+        return require("../assets/" + "hotsauce.png");
+      } else {
+        // return "../assets/dumpling-no-bg.png";
+        return require("../assets/" + "dumpling-no-bg.png");
+      }
+    },
   },
 });
 </script>
@@ -52,24 +62,43 @@ export default defineComponent({
   border: 4px solid white;
   color: white;
 
+  img {
+    max-width: 100%;
+  }
+
   &__name {
     font-family: $display-font;
     font-weight: bold;
+  }
+  &.chilli {
+    img {
+      max-height: 60px;
+      width: auto;
+      margin-top: 13px;
+    }
   }
 
   &--player-card {
     cursor: pointer;
 
+    &.chilli {
+      img {
+        max-height: 90px;
+        margin-top: 10px;
+      }
+    }
+  }
+
+  &--table-card {
     &.champagne {
       & .card__name {
-        font-size: 0.8em;
-        line-height: 1.5em;
+        font-size: 0.7em;
       }
     }
   }
 
   &--is-selected {
-    border: 4px solid $main;
+    border: 4px solid $green;
   }
 
   &:hover {
@@ -106,9 +135,27 @@ export default defineComponent({
   background: linear-gradient(45deg, $green, $teal, $purple, $coral);
 }
 
+.chilli {
+  background: linear-gradient(45deg, black, darken($coral, 50%));
+}
+
+.vinegar {
+  background: linear-gradient(45deg, darken($coral, 50%), darken($coral, 30%));
+}
+
+.ice {
+  background: linear-gradient(45deg, $teal, $teal-secondary);
+}
+
+.bowl {
+  background: linear-gradient(45deg, darken($green, 20%), $green-secondary);
+}
+
+.puddin {
+  background: linear-gradient(45deg, $coral, $gold-secondary);
+}
 /* Add some padding inside the card container */
 .container {
-  padding: 2px 16px;
   margin-bottom: 4px;
 
   &:hover {

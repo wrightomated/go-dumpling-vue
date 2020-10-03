@@ -35,6 +35,10 @@ class SocketService {
     return this.socket.on("table", callback);
   }
 
+  public onEnd(callback: any) {
+    return this.socket.on("end", callback);
+  }
+
   public clientReady(playerName?: string): void {
     this.socket.emit("ready", playerName);
   }

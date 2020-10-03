@@ -9,6 +9,7 @@
     <div class="play-area">
       <Table />
     </div>
+    <End />
   </div>
 </template>
 
@@ -17,6 +18,7 @@ import { defineComponent } from "vue";
 import GameDetails from "./GameDetails.vue";
 import PlayerCards from "./PlayerCards.vue";
 import Table from "./Table.vue";
+// import End from "./End.vue";
 
 export default defineComponent({
   name: "Game",
@@ -24,6 +26,7 @@ export default defineComponent({
     GameDetails,
     PlayerCards,
     Table,
+    // End,
   },
 });
 </script>
@@ -41,38 +44,4 @@ export default defineComponent({
   width: 100%;
   margin: 0 auto;
 }
-// .grid-container {
-//   display: grid;
-//   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
-//   // grid-template-rows: repeat(3, 1fr);
-//   gap: 8px 8px;
-//   grid-template-areas:
-//     "player-hand player-hand player-hand player-hand player-hand game-details"
-//     "play-area play-area play-area play-area play-area play-area"
-//     "play-area play-area play-area play-area play-area play-area";
-// }
-// .player-hand {
-//   display: grid;
-//   grid-template-columns: repeat(10, 1fr);
-//   grid-template-rows: 1fr;
-//   gap: 1px 8px;
-//   grid-template-areas: ". . . . . . . . . .";
-//   grid-area: player-hand;
-// }
-// .game-details {
-//   grid-area: game-details;
-// }
-// .play-area {
-//   display: grid;
-//   grid-template-columns: repeat(13, 1fr);
-//   grid-template-rows: repeat(5, 1fr);
-//   gap: 1px 8px;
-//   grid-template-areas:
-//     ". . . . . . . . . . . . ."
-//     ". . . . . . . . . . . . ."
-//     ". . . . . . . . . . . . ."
-//     ". . . . . . . . . . . . ."
-//     ". . . . . . . . . . . . .";
-//   grid-area: play-area;
-// }
 </style>

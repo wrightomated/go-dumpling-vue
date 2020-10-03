@@ -41,7 +41,11 @@ export default defineComponent({
     text-align: left;
     list-style-type: none;
   }
+  span {
+    color: $green;
+  }
 }
+
 ul {
   text-align: left;
   // list-style-type: none;
