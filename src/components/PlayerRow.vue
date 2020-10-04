@@ -2,7 +2,9 @@
   <div class="player-row" :class="{ 'player-row--winner': player.winner }">
     <div class="player-details item">
       <div v-if="player.winner">Winner!</div>
-      <div class="name">{{ player.playerName }}</div>
+      <div class="name" :class="{ 'name--played': player.selectedCard }">
+        {{ player.playerName }}
+      </div>
       <div class="score">Score: {{ player.playerScore }}</div>
     </div>
     <Card
@@ -12,6 +14,7 @@
       :cardType="card.type"
       :cardId="card.id"
     />
+    <Card v-if="player.selectedCard" class="card item" cardType="dummy" />
     <div class="player-row__puddins">Puddins: {{ player.playerPuddins }}</div>
   </div>
 </template>
@@ -35,7 +38,7 @@ export default defineComponent({
 <style scoped lang="scss">
 .player-row {
   display: flex;
-  min-height: 125px;
+  min-height: 132px;
   flex-wrap: wrap;
   border: 4px solid white;
   background: #aec6cf;
@@ -57,6 +60,14 @@ export default defineComponent({
     // justify-content: flex-end;
     margin: 5px 10px 5px auto;
     // margin;
+  }
+}
+.name {
+  &--played {
+    span {
+      color: $teal;
+    }
+    //
   }
 }
 

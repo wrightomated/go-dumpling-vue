@@ -154,6 +154,10 @@ export default defineComponent({
 .puddin {
   background: linear-gradient(45deg, $coral, $gold-secondary);
 }
+
+.dummy {
+  background: white;
+}
 /* Add some padding inside the card container */
 .container {
   margin-bottom: 4px;
